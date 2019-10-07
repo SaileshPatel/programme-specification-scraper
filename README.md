@@ -5,7 +5,7 @@ A programme written by Sailesh Patel (160034811) designed to scrape information 
 ## Tech Used
 *TODO*
 
-## Installation
+## Installation
 *TODO*
 
 ## Usage
