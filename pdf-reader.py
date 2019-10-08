@@ -9,4 +9,6 @@ def extract_text(path):
     tabula.convert_into(path, 'pdf_csv_file.csv', lattice=True)
 
 if __name__ == '__main__':
-    extract_text('../ProgrammeSpecifications/BScComputerScience.pdf')
+    spec_to_get = input("Enter in the course specification you would like to scrape: ")
+    # BScComputerScience.pdf
+    extract_text('../ProgrammeSpecifications/' + spec_to_get + ".pdf")
