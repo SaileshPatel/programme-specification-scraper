@@ -8,7 +8,8 @@ def extract_course_info(course):
 
     pdf_text = tabula.read_pdf(path, lattice=True, pandas_options={'header': None})
     print(pdf_text) # print pandas.core.frame.DataFrame
-    
+    print(pdf_text.iloc[0, [0, 1]])
+
     # tabula.convert_into(path, filename + '.tsv', 'tsv', lattice=True)
     # tabula.convert_into(path, filename + '.json', 'json', lattice=True)
     # tabula.convert_into(path, filename + '.csv', lattice=True)
