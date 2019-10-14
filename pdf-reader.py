@@ -7,12 +7,24 @@ def extract_course_info(course):
     filename = 'pdf_' + spec_to_get
 
     pdf_text = tabula.read_pdf(path, lattice=True, pandas_options={'header': None})
-    print(pdf_text) # print pandas.core.frame.DataFrame
-    print(pdf_text.iloc[0, [0, 1]])
 
-    # tabula.convert_into(path, filename + '.tsv', 'tsv', lattice=True)
-    # tabula.convert_into(path, filename + '.json', 'json', lattice=True)
-    # tabula.convert_into(path, filename + '.csv', lattice=True)
+    specification_data = {}
+    specification_data[pdf_text.iloc[0, 0]] = pdf_text.iloc[0, 1] # Programe Title
+    specification_data['School'] = pdf_text.iloc[2, 1]
+    specification_data['Degree Type'] = pdf_text.iloc[3, 1]
+    specification_data['Location'] = pdf_text.iloc[9, 1]
+    specification_data['Programme Length'] = pdf_text.iloc[10, 1]
+    specification_data['Total Credits'] = pdf_text.iloc[11, 1]
+
+    #print(type(pdf_text.iloc[6]))
+
+    # loop over
+        # if value = x, 
+            # get index 
+            # depending on index, give answer
+
+
+    print(specification_data)
 
 if __name__ == '__main__':
     spec_to_get = input("Enter in the course specification you would like to scrape: ")
