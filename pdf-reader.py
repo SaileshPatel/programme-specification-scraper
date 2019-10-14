@@ -10,7 +10,7 @@ def extract_course_info(course):
 
     specification_data = {}
     specification_data[pdf_text.iloc[0, 0]] = pdf_text.iloc[0, 1] # Programe Title
-    specification_data['School'] = pdf_text.iloc[2, 1]
+    specification_data['School of Study'] = pdf_text.iloc[2, 1]
     specification_data['Degree Type'] = pdf_text.iloc[3, 1]
     specification_data['Location'] = pdf_text.iloc[9, 1]
     specification_data['Programme Length'] = pdf_text.iloc[10, 1]
