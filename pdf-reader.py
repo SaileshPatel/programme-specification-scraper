@@ -29,6 +29,14 @@ def extract_course_info(course):
             for index, page in enumerate(pdf):
                 if(index == 0):
                     specification_data = page
+                    # programme title
+                    # school/subject title
+                    # final award
+                    # mode of study
+                    # location
+                    # total length of programme
+                    # accredited by
+                    # entry requirements
 
 
     print(specification_data)
