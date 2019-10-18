@@ -13,8 +13,11 @@ def extract_course_info(course):
     if(isinstance(pdf_text[0].iloc[0, 0], str)):
         print(pdf_text[0])
     else:
-        print("Need to parse differently")
-        
+        with open(path, 'rb') as f:
+            pdf = pdftotext.PDF(f)
+
+        print(pdf[0])
+
 
 if __name__ == '__main__':
     spec_to_get = input("Enter in the course specification you would like to scrape: ")
