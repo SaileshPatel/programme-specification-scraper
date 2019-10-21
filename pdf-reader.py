@@ -42,19 +42,22 @@ def extract_course_info(course):
                             specification_data['Delivery Pattern'] = "Online/distance"
 
     else:
-        with open(path, 'rb') as f:
-            pdf = pdftotext.PDF(f, raw=True)
-            for index, page in enumerate(pdf):
-                if(index == 0):
-                    print(page)
-                    # Programme Title
-                    # school/subject title
-                    # final award
-                    # mode of study
-                    # location
-                    # total length of programme
-                    # accredited by
-                    # entry requirements
+        try:
+            with open(path, 'rb') as f:
+                pdf = pdftotext.PDF(f, raw=True)
+                for index, page in enumerate(pdf):
+                    if(index == 0):
+                        print(page)
+                        # Programme Title
+                        # school/subject title
+                        # final award
+                        # mode of study
+                        # location
+                        # total length of programme
+                        # accredited by
+                        # entry requirements
+        except:
+            print("This PDF file cannot be scraped by our scraper.")
 
 
     print(specification_data)

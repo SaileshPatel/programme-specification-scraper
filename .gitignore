@@ -3,3 +3,4 @@
 *.tsv
 *.json
 .DS_Store
+.vscode
