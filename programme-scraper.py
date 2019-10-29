@@ -47,16 +47,18 @@ def extract_course_info(course):
         print("Your PDF cannot be scraped.")
 
 def web_scraping(course):
-    return None
-
-
+    res = requests.get(course)
+    soup = BeautifulSoup(res.content, 'lxml')
+    for accordion_item in soup.find_all("div", {"class": "accordion__content"}):
+        print("\n\n\n")
+        print(accordion_item)
 
 if __name__ == '__main__':
     scraping_method = input("Type in P for PDF scraper, W for Web Scraping, H for Help, or Q to Quit: ")
     if scraping_method == 'W':
+        # https://www2.aston.ac.uk/study/courses/computer-science-bsc
         web_spec_to_get = input("Enter the website from which you want the course specification from: ")
         web_scraping(web_spec_to_get)
-        print("To Do")
     elif scraping_method == 'P':
         spec_to_get = input("Enter in the course specification you would like to scrape: ")
         # ../ProgrammeSpecifications/BScComputerScience
