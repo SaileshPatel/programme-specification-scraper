@@ -1,5 +1,7 @@
 import pandas as pd
 import tabula
+import requests
+from bs4 import BeautifulSoup
 
 def extract_course_info(course):
     path = spec_to_get + ".pdf"
