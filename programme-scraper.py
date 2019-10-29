@@ -1,6 +1,5 @@
 import pandas as pd
 import tabula
-import pdftotext
 
 def extract_course_info(course):
     path = spec_to_get + ".pdf"
