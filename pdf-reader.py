@@ -64,7 +64,15 @@ def extract_course_info(course):
 
 
 if __name__ == '__main__':
-    spec_to_get = input("Enter in the course specification you would like to scrape: ")
-    # ../ProgrammeSpecifications/BScComputerScience
-    # ../ProgrammeSpecifications/BScDigitalDegreeApprenticeship
-    extract_course_info(spec_to_get)
+    scraping_method = input("Type in P for PDF scraper, W for Web Scraping, H for Help, or Q to Quit: ")
+    if scraping_method == 'W':
+        print("To Do")
+    elif scraping_method == 'P':
+        spec_to_get = input("Enter in the course specification you would like to scrape: ")
+        # ../ProgrammeSpecifications/BScComputerScience
+        # ../ProgrammeSpecifications/BScDigitalDegreeApprenticeship
+        extract_course_info(spec_to_get)
+    elif scraping_method == 'H':
+        print ("To Do")
+    else:
+        exit();
