@@ -32,7 +32,7 @@ def extract_course_info(course):
                         elif index == 2:
                             specification_data['Attendance Type'] = "Part Time"
 
-                for index, value in pdf_text.iloc[8].items():
+                for index, value in page.iloc[8].items():
                     if value == 'X':
                         if index == 1:
                             specification_data['Delivery Pattern'] = "Campus-based"
