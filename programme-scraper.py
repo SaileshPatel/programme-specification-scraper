@@ -47,12 +47,14 @@ def extract_course_info(course):
         print("Your PDF cannot be scraped.")
 
 def web_scraping(course):
-    res = requests.get(course)
-    soup = BeautifulSoup(res.content, 'lxml')
-    for accordion_item in soup.find_all("div", {"class": "accordion__content"}):
-        print("\n\n\n")
-        print(accordion_item)
-
+    try:
+        res = requests.get(course)
+        soup = BeautifulSoup(res.content, 'lxml')
+        for accordion_item in soup.find_all("div", {"class": "accordion__inner"}):
+            print("\n\n\n")
+            print(accordion_item.contents)
+    except:
+        print("The URL you have provided cannot be scraped.")
 if __name__ == '__main__':
     scraping_method = input("Type in P for PDF scraper, W for Web Scraping, H for Help, or Q to Quit: ")
     if scraping_method == 'W':
