@@ -43,8 +43,9 @@ def extract_course_info(course):
 
 
         print(specification_data)
-    except:
+    except Exception as ex:
         print("Your PDF cannot be scraped.")
+        print(ex)
 
 def web_scraping(course):
     try:
@@ -61,8 +62,9 @@ def web_scraping(course):
                 course_info[itemName] = info.text.encode('ascii','ignore')
 
         print(course_info)
-    except:
+    except Exception as ex:
         print("The URL you have provided cannot be scraped.")
+        print(ex)
 if __name__ == '__main__':
     scraping_method = input("Type in P for PDF scraper, W for Web Scraping, H for Help, or Q to Quit: ")
     if scraping_method == 'W':
