@@ -53,7 +53,7 @@ def web_scraping(course):
         course_info = {}
 
         for item in soup.find_all("div", {"class": "accordion"}):
-            itemName = ""
+            itemName = "" # temporary storage for name of the key
             for i in item.find_all("a", {"class": "accordion__title"}):
                 itemName = i.text
                 course_info[itemName] = ""
