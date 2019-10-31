@@ -50,9 +50,18 @@ def web_scraping(course):
     try:
         res = requests.get(course)
         soup = BeautifulSoup(res.content, 'lxml')
-        for accordion_item in soup.find_all("div", {"class": "accordion__inner"}):
-            print("\n\n\n")
-            print(accordion_item.contents)
+        course_info = {}
+
+        for item in soup.find_all("div", {"class": "accordion"}):
+            itemName = ""
+            for i in item.find_all("a", {"class": "accordion__title"}):
+                itemName = i.text
+                course_info[itemName] = ""
+            for i in item.find_all("div", {"class": "accordion__inner"}):
+                course_info[itemName] = i.text
+
+
+        print(course_info)
     except:
         print("The URL you have provided cannot be scraped.")
 if __name__ == '__main__':
