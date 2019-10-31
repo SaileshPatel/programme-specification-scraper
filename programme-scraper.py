@@ -52,14 +52,13 @@ def web_scraping(course):
         soup = BeautifulSoup(res.content, 'lxml')
         course_info = {}
 
-        for item in soup.find_all("div", {"class": "accordion"}):
+        for info_accordion in soup.find_all("div", {"class": "accordion"}):
             itemName = "" # temporary storage for name of the key
-            for i in item.find_all("a", {"class": "accordion__title"}):
-                itemName = i.text
+            for title in info_accordion.find_all("a", {"class": "accordion__title"}):
+                itemName = title.text
                 course_info[itemName] = ""
-            for i in item.find_all("div", {"class": "accordion__inner"}):
-                course_info[itemName] = i.text
-
+            for info in info_accordion.find_all("div", {"class": "accordion__inner"}):
+                course_info[itemName] = info.text.encode('ascii','ignore')
 
         print(course_info)
     except:
