@@ -65,6 +65,7 @@ def web_scraping(course):
     except Exception as ex:
         print("The URL you have provided cannot be scraped.")
         print(ex)
+
 if __name__ == '__main__':
     scraping_method = input("Type in P for PDF scraper, W for Web Scraping, H for Help, or Q to Quit: ")
     if scraping_method == 'W':
