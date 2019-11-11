@@ -52,29 +52,27 @@ def web_scraping(school, course):
         res = requests.get(course)
         soup = BeautifulSoup(res.content, 'lxml')
         course_info = {}
+        database_info = {}
 
-        for info_accordion in soup.find_all("div", {"class": "accordion"}):
-            itemName = "" # temporary storage for name of the key
-            for title in info_accordion.find_all("a", {"class": "accordion__title"}):
-                itemName = title.text
-                course_info[itemName] = ""
-            for info in info_accordion.find_all("div", {"class": "accordion__inner"}):
-                course_info[itemName] = info.text.encode('ascii','ignore')
-
-
-        # if school == 'ABS' :
-        #     return None
-        # elif school == 'AMS' :
-        #     return None
-        # elif school == 'EAS' :
-        #     return None
-        # elif school == 'LHS' :
-        #     return None
-        # elif school == 'LSS':
-        #     return None
-        # else: 
-        #     print("invalid school choice")
-
+        if school == 'ABS' :
+            return None
+        elif school == 'AMS' :
+            return None
+        elif school == 'EAS' :
+            #['Career Prospects', 'Entry Requirements & Fees for 2020', 'Course Outline & Modules', 'Placement Year', 'Learning, Teaching & Assessment', 'Teaching Staff', 'Contact Us']
+            for info_accordion in soup.find_all("div", {"class": "accordion"}):
+                itemName = "" # temporary storage for name of the key
+                for title in info_accordion.find_all("a", {"class": "accordion__title"}):
+                    itemName = title.text
+                    course_info[itemName] = ""
+                for info in info_accordion.find_all("div", {"class": "accordion__inner"}):
+                    course_info[itemName] = info.text.strip().replace('\n', ' ').encode("ascii", "ignore")
+        elif school == 'LHS' :
+            return None
+        elif school == 'LSS':
+            return None
+        else: 
+            print("invalid school choice")
         print(course_info)
     except Exception as ex:
         print("The URL you have provided cannot be scraped.")
