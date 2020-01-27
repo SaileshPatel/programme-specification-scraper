@@ -1,6 +1,7 @@
 import pandas as pd
 import tabula
 import requests
+import re
 from bs4 import BeautifulSoup
 
 def extract_course_info(course):
@@ -61,12 +62,13 @@ def web_scraping(school, course):
         elif school == 'EAS' :
             #['Career Prospects', 'Entry Requirements & Fees for 2020', 'Course Outline & Modules', 'Placement Year', 'Learning, Teaching & Assessment', 'Teaching Staff', 'Contact Us']
             for info_accordion in soup.find_all("div", {"class": "accordion"}):
-                itemName = "" # temporary storage for name of the key
+                item_name = "" # temporary storage for name of the key
                 for title in info_accordion.find_all("a", {"class": "accordion__title"}):
-                    itemName = title.text
-                    course_info[itemName] = ""
+                    item_name = title.text
+                    course_info[item_name] = ""
                 for info in info_accordion.find_all("div", {"class": "accordion__inner"}):
-                    course_info[itemName] = info.text.strip().replace('\n', ' ').encode("ascii", "ignore")
+                    course_info[item_name] = info.text.strip().replace('\n', ' ').encode("ascii", "ignore")
+
         elif school == 'LHS' :
             return None
         elif school == 'LSS':
