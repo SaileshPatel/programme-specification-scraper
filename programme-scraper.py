@@ -54,6 +54,7 @@ def web_scraping(school, course):
         soup = BeautifulSoup(res.content, 'lxml')
         course_info = {}
         database_info = {}
+        UCAS_code = ""
 
         if school == 'ABS' :
             return None
@@ -67,8 +68,16 @@ def web_scraping(school, course):
                     item_name = title.text
                     course_info[item_name] = ""
                 for info in info_accordion.find_all("div", {"class": "accordion__inner"}):
+                    if item_name == "Entry Requirements & Fees for 2020":
+                        for p in info_accordion.find_all("p", {"class": None}):
+                            for title_text in p.findAll("strong"):
+                                #print(title_text)
+                                if title_text.text == "UCAS Code:":
+                                    UCAS_code = p.find_all(text=True, recursive=False)[0].string.strip()
+                            
                     course_info[item_name] = info.text.strip().replace('\n', ' ').encode("ascii", "ignore")
 
+            course_info['UCAS Code'] = UCAS_code
         elif school == 'LHS' :
             return None
         elif school == 'LSS':
