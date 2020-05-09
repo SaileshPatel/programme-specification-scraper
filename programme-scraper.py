@@ -1,7 +1,5 @@
-import pandas as pd
 import tabula
 import requests
-import re
 from bs4 import BeautifulSoup
 
 def extract_course_info(course):
@@ -98,8 +96,8 @@ if __name__ == '__main__':
         web_scraping(course_school, web_spec_to_get)
     elif scraping_method == 'P':
         spec_to_get = input("Enter in the course specification you would like to scrape: ")
-        # ../ProgrammeSpecifications/BScComputerScience
-        # ../ProgrammeSpecifications/BScDigitalDegreeApprenticeship
+        # ProgrammeSpecifications/BScComputerScience
+        # BScDigitalDegreeApprenticeship
         extract_course_info(spec_to_get)
     else:
         exit()
