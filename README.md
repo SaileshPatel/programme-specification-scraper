@@ -3,9 +3,9 @@
 A programme written by Sailesh Patel (160034811) designed to scrape information from course programme specification PDFs, as a part of the FYP project, A Chatbot for Assisting University Admission Process, supervised by Dr Sylvia Wong. 
 
 ## Tech Used
-* [Tabula-Py] (https://tabula-py.readthedocs.io/en/latest/getting_started.html#installation)
-* [BeautifulSoup] (https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
-* [Requests] (https://requests.readthedocs.io/en/master/user/install/)
+* [Tabula-Py](https://tabula-py.readthedocs.io/en/latest/getting_started.html#installation)
+* [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
+* [Requests](https://requests.readthedocs.io/en/master/user/install/)
 * Python 3.7.7
 * pip 20.0.2 
 
