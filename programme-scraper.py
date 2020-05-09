@@ -1,17 +1,16 @@
-import pandas as pd
 import tabula
-import pdftotext
+import requests
+from bs4 import BeautifulSoup
 
 def extract_course_info(course):
-
     path = spec_to_get + ".pdf"
     filename = 'pdf_' + spec_to_get
 
-    pdf_text = tabula.read_pdf(path, lattice=True, pandas_options={'header': None}, pages="all", multiple_tables=True)
-    
-    specification_data = {}
+    try:
+        pdf_text = tabula.read_pdf(path, lattice=True, pandas_options={'header': None}, pages="all", multiple_tables=True)
 
-    if(isinstance(pdf_text[0].iloc[0, 0], str)):
+        specification_data = {}
+
         for index, page in enumerate(pdf_text):
             # page = page in PDF file
             # index = page no i.e 0 = 1, 1 = 2, etc
@@ -41,38 +40,64 @@ def extract_course_info(course):
                         elif index == 3:
                             specification_data['Delivery Pattern'] = "Online/distance"
 
-    else:
-        try:
-            with open(path, 'rb') as f:
-                pdf = pdftotext.PDF(f, raw=True)
-                for index, page in enumerate(pdf):
-                    if(index == 0):
-                        print(page)
-                        # Programme Title
-                        # school/subject title
-                        # final award
-                        # mode of study
-                        # location
-                        # total length of programme
-                        # accredited by
-                        # entry requirements
-        except:
-            print("This PDF file cannot be scraped by our scraper.")
 
+        print(specification_data)
+    except Exception as ex:
+        print("Your PDF cannot be scraped.")
+        print(ex)
 
-    print(specification_data)
+def web_scraping(school, course):
+    try:
+        res = requests.get(course)
+        soup = BeautifulSoup(res.content, 'lxml')
+        course_info = {}
+        database_info = {}
+        UCAS_code = ""
 
+        if school == 'ABS' :
+            return None
+        elif school == 'AMS' :
+            return None
+        elif school == 'EAS' :
+            #['Career Prospects', 'Entry Requirements & Fees for 2020', 'Course Outline & Modules', 'Placement Year', 'Learning, Teaching & Assessment', 'Teaching Staff', 'Contact Us']
+            for info_accordion in soup.find_all("div", {"class": "accordion"}):
+                item_name = "" # temporary storage for name of the key
+                for title in info_accordion.find_all("a", {"class": "accordion__title"}):
+                    item_name = title.text
+                    course_info[item_name] = ""
+                for info in info_accordion.find_all("div", {"class": "accordion__inner"}):
+                    if item_name == "Entry Requirements & Fees for 2020":
+                        for p in info_accordion.find_all("p", {"class": None}):
+                            for title_text in p.findAll("strong"):
+                                #print(title_text)
+                                if title_text.text == "UCAS Code:":
+                                    UCAS_code = p.find_all(text=True, recursive=False)[0].string.strip()
+                            
+                    course_info[item_name] = info.text.strip().replace('\n', ' ').encode("ascii", "ignore")
+
+            course_info['UCAS Code'] = UCAS_code
+        elif school == 'LHS' :
+            return None
+        elif school == 'LSS':
+            return None
+        else: 
+            print("invalid school choice")
+        print(course_info)
+    except Exception as ex:
+        print("The URL you have provided cannot be scraped.")
+        print(ex)
 
 if __name__ == '__main__':
-    scraping_method = input("Type in P for PDF scraper, W for Web Scraping, H for Help, or Q to Quit: ")
+    scraping_method = input("Type in P for PDF scraper, W for Web Scraping, or Q to Quit: ")
     if scraping_method == 'W':
-        print("To Do")
+        # https://www2.aston.ac.uk/study/courses/computer-science-bsc
+        course_school = input("Enter the school which the course you want to scrape belongs to:\nABS - Aston Business School\nAMS - Aston Medical School\nEAS - Engineering & Applied Sciences\nLHS - Life & Health Sciences\nLSS - Languages & Social Sciences\n")
+        web_spec_to_get = input("Enter the website from which you want the course specification from: ")
+        web_scraping(course_school, web_spec_to_get)
     elif scraping_method == 'P':
         spec_to_get = input("Enter in the course specification you would like to scrape: ")
-        # ../ProgrammeSpecifications/BScComputerScience
-        # ../ProgrammeSpecifications/BScDigitalDegreeApprenticeship
+        # ProgrammeSpecifications/BScComputerScience
+        # BScDigitalDegreeApprenticeship
         extract_course_info(spec_to_get)
-    elif scraping_method == 'H':
-        print ("To Do")
     else:
-        exit();
+        exit()
