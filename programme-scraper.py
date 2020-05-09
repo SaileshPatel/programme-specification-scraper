@@ -90,7 +90,7 @@ def web_scraping(school, course):
         print(ex)
 
 if __name__ == '__main__':
-    scraping_method = input("Type in P for PDF scraper, W for Web Scraping, H for Help, or Q to Quit: ")
+    scraping_method = input("Type in P for PDF scraper, W for Web Scraping, or Q to Quit: ")
     if scraping_method == 'W':
         # https://www2.aston.ac.uk/study/courses/computer-science-bsc
         course_school = input("Enter the school which the course you want to scrape belongs to:\nABS - Aston Business School\nAMS - Aston Medical School\nEAS - Engineering & Applied Sciences\nLHS - Life & Health Sciences\nLSS - Languages & Social Sciences\n")
@@ -101,7 +101,5 @@ if __name__ == '__main__':
         # ../ProgrammeSpecifications/BScComputerScience
         # ../ProgrammeSpecifications/BScDigitalDegreeApprenticeship
         extract_course_info(spec_to_get)
-    elif scraping_method == 'H':
-        print ("To Do")
     else:
         exit()
