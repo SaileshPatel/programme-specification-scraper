@@ -13,7 +13,6 @@ A programme written by Sailesh Patel (160034811) designed to scrape information 
 1. Clone the repository
 2. Install the required technologies listed above (the links are to their respective installation instructions)
 
-
 **Note** PIP is not required, but would be beneficial to install Tabula-Py, BeautifulSoup, and Requests
 
 ## Usage
