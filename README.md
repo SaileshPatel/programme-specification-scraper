@@ -9,7 +9,7 @@ A programme written by Sailesh Patel (160034811) designed to scrape information 
 * [Python 3.7.7](https://www.python.org/downloads/release/python-377/)
 * [pip 20.0.2](https://pip.pypa.io/en/stable/installing/)  
 
-## Installation
+## Installation
 1. Clone the repository
 2. Install the required technologies listed above (the links are to their respective installation instructions)
 
