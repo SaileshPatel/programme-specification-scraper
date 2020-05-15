@@ -17,18 +17,18 @@ A programme written by Sailesh Patel (160034811) designed to scrape information 
 
 ## Usage
 * Please ensure that all the software requirements have been met before executing the program
-* To execute the program, run the command python3 programme-scraper.py
+* To execute the program, run the command `python3 programme-scraper.py`
 * To run the PDF scraper
-    * Type ‘P’ and press ‘Enter’
-	* Type the PDF file in without the ‘.pdf’ extension and press ‘Enter’
-        * BScComputerScience shows the PDF scraper working
-        * BScDigitalDegreeApprenticeship shows the PDF scraper not working
+    * Type `P` and press `Enter`
+	* Type the PDF file in without the `.pdf` extension and press `Enter`
+        * `BScComputerScience` shows the PDF scraper working
+        * `BScDigitalDegreeApprenticeship` shows the PDF scraper not working
 * To run the web scraper
-    * Type ‘W’ and press ‘Enter’
-        * Type ‘EAS’ for the school and press ‘Enter’
+    * Type `W` and press `Enter`
+        * Type `EAS` for the school and press `Enter`
         * Type the website you would like to scrape
-            * Type ‘https://www2.aston.ac.uk/study/courses/computer-science-bsc’ to show the web scraper working
-            * Type ‘https://www2.aston.ac.uk/study/courses/chemistry-bsc’ to show the web scraper fail to format the text inside the Entry Requirements & Fees for 2020
+            * Type `https://www2.aston.ac.uk/study/courses/computer-science-bsc` to show the web scraper working
+            * Type `https://www2.aston.ac.uk/study/courses/chemistry-bsc` to show the web scraper fail to format the text inside the Entry Requirements & Fees for 2020
 
 
 
