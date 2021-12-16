@@ -1,5 +1,7 @@
 # course-programme-specification-scraper
 
+**This repository has now been archived as of 16/12/2021. This repository has not been maintained since May 2020**
+
 A programme written by Sailesh Patel (160034811) designed to scrape information from course programme specification PDFs, as a part of the FYP project, A Chatbot for Assisting University Admission Process, supervised by Dr Sylvia Wong at Aston University.
 
 ## Tech Used
